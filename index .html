@@ -1,0 +1,1193 @@
+<<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Resmi Seleksi Nasional SMBP 2026</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .dark .glass-panel {
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+        }
+
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        /* Custom Animations */
+        @keyframes pulse-glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(6, 182, 212, 0.4), 0 0 40px rgba(59, 130, 246, 0.2); }
+            50% { text-shadow: 0 0 40px rgba(6, 182, 212, 0.8), 0 0 60px rgba(59, 130, 246, 0.6); }
+        }
+
+        .glow-text {
+            animation: pulse-glow 3s infinite;
+        }
+
+        @keyframes gradient-bg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-bg {
+            background: linear-gradient(-45deg, #0f172a, #1e3a8a, #0369a1, #0891b2);
+            background-size: 400% 400%;
+            animation: gradient-bg 15s ease infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+
+        /* Step wizard wizard line connection */
+        .step-line {
+            background: #e2e8f0;
+        }
+        .dark .step-line {
+            background: #334155;
+        }
+        .step-line.active {
+            background: #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300 antialiased min-h-screen flex flex-col">
+
+    <div id="splash-screen" class="fixed inset-0 z-50 animated-bg flex flex-col items-center justify-center text-white px-4 transition-all duration-1000">
+        <div class="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-400 rounded-full filter blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl animate-pulse delay-1000"></div>
+        </div>
+
+        <div class="text-center space-y-4 max-w-xl scale-95 opacity-0 animate-[fadeIn_0.8s_ease-out_forwards]">
+            <span class="tracking-widest text-xs uppercase bg-white/10 px-4 py-1.5 rounded-full border border-white/20 font-medium text-cyan-300">Sistem Aplikasi Utama</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight glow-text text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-200 to-white">
+                PEMBUAT WEBSITE
+            </h1>
+            <p class="text-xl md:text-2xl font-semibold text-slate-200 tracking-wide">
+                RUDI JAYA
+            </p>
+            
+            <div class="pt-12 w-64 mx-auto">
+                <div class="flex justify-between mb-2 text-xs text-slate-300">
+                    <span id="loading-text">Menginisialisasi Portal SMBP...</span>
+                    <span id="loading-percentage">0%</span>
+                </div>
+                <div class="w-full bg-white/10 rounded-full h-2 overflow-hidden border border-white/10 p-[1px]">
+                    <div id="loading-bar" class="bg-gradient-to-r from-cyan-400 to-blue-500 h-full rounded-full transition-all duration-300 ease-out" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="global-announcement" class="bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-800 dark:to-cyan-800 text-white py-2 px-4 text-center text-xs md:text-sm font-medium relative z-40 shadow-md">
+        <i class="fa-solid fa-bullhorn mr-2 animate-bounce"></i> 
+        <span>Pendaftaran SMBP Tahun Terbuka Hingga 28 Juni 2026. Segera Lengkapi Berkas Anda!</span>
+        <button onclick="document.getElementById('global-announcement').remove()" class="absolute right-4 top-1/2 -translate-y-1/2 opacity-70 hover:opacity-100 transition-opacity">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+
+    <nav class="sticky top-0 z-40 glass-panel shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+                    <div class="bg-gradient-to-tr from-blue-600 to-cyan-500 text-white p-2.5 rounded-xl shadow-md shadow-blue-500/20">
+                        <i class="fa-solid fa-graduation-cap text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent">SMBP 2026</span>
+                        <p class="text-[10px] text-slate-500 dark:text-slate-400 tracking-wider uppercase font-semibold">Kementerian Pendidikan & Ristek</p>
+                    </div>
+                </div>
+
+                <div class="hidden lg:flex items-center space-x-1">
+                    <button onclick="navigateTo('home')" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40">Home</button>
+                    <button onclick="navigateTo('requirements')" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-blue-400 transition">Syarat</button>
+                    <button onclick="navigateTo('schedule')" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-blue-400 transition">Jadwal</button>
+                    <button onclick="navigateTo('universities')" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-blue-400 transition">PTN List</button>
+                    <button onclick="navigateTo('registration')" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-blue-400 transition">Pendaftaran</button>
+                    <button onclick="navigateTo('results')" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-blue-400 transition">Hasil Seleksi</button>
+                    <button onclick="navigateTo('faq')" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-blue-400 transition">FAQ</button>
+                    <button onclick="navigateTo('contact')" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-blue-400 transition">Kontak</button>
+                    <button onclick="navigateTo('admin')" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition"><i class="fa-solid fa-user-shield mr-1"></i>Admin</button>
+                </div>
+
+                <div class="hidden lg:flex items-center space-x-3">
+                    <div class="text-right border-r border-slate-200 dark:border-slate-700 pr-3 hidden xl:block">
+                        <span id="live-clock" class="text-xs font-mono font-bold text-slate-600 dark:text-slate-400">00:00:00 AM</span>
+                        <p class="text-[9px] text-slate-400 font-medium uppercase tracking-wider">Waktu Server</p>
+                    </div>
+
+                    <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition text-slate-600 dark:text-slate-300" title="Ubah Tema">
+                        <i id="theme-icon" class="fa-solid fa-moon"></i>
+                    </button>
+
+                    <button onclick="navigateTo('login')" class="flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-md shadow-blue-500/10 active:scale-95 transition-all">
+                        <i class="fa-solid fa-right-to-bracket text-xs"></i>
+                        <span>Masuk Portal</span>
+                    </button>
+                </div>
+
+                <div class="flex items-center space-x-2 lg:hidden">
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                        <i id="theme-icon-mobile" class="fa-solid fa-moon"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+                        <i id="mobile-menu-icon" class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg px-4 pt-2 pb-6 space-y-1 shadow-xl">
+            <button onclick="navigateTo('home')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium bg-blue-50 text-blue-600 dark:bg-slate-800 dark:text-blue-400">Home</button>
+            <button onclick="navigateTo('requirements')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300">Syarat Pendaftaran</button>
+            <button onclick="navigateTo('schedule')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300">Jadwal Pelaksanaan</button>
+            <button onclick="navigateTo('universities')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300">Daftar Universitas</button>
+            <button onclick="navigateTo('registration')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300">Formulir Pendaftaran</button>
+            <button onclick="navigateTo('results')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300">Cek Hasil Kelulusan</button>
+            <button onclick="navigateTo('faq')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300">FAQ</button>
+            <button onclick="navigateTo('contact')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300">Hubungi Kami</button>
+            <button onclick="navigateTo('admin')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-rose-500"><i class="fa-solid fa-user-shield mr-2"></i>Dashboard Admin</button>
+            <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+                <button onclick="navigateTo('login')" class="w-full text-center bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-2.5 rounded-xl font-semibold text-sm">Masuk Sistem</button>
+            </div>
+        </div>
+    </nav>
+
+
+    <div id="notification-container" class="fixed top-24 right-4 z-50 space-y-2 pointer-events-none max-w-sm w-full"></div>
+
+
+    <main class="flex-grow">
+
+        <section id="section-home" class="page-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-gradient-to-br from-blue-600/10 via-cyan-500/5 to-transparent rounded-3xl p-6 md:p-12 border border-blue-500/10 relative overflow-hidden">
+                <div class="lg:col-span-7 space-y-6 relative z-10">
+                    <span class="inline-flex items-center space-x-2 bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                        <span>Registrasi Gelombang I Resmi Dibuka</span>
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+                        Raih Masa Depan Gemilang Melalui Jalur <span class="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Prestasi SMBP 2026</span>
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-300 text-base md:text-lg max-w-xl">
+                        Seleksi Nasional Berdasarkan Prestasi memberi kesempatan emas bagi lulusan terbaik sekolah menengah tingkat atas untuk melanjutkan pendidikan ke Perguruan Tinggi Negeri unggulan tanpa ujian tertulis.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+                        <button onclick="navigateTo('registration')" class="bg-blue-600 hover:bg-blue-700 text-white text-center px-6 py-3.5 rounded-xl font-bold shadow-lg shadow-blue-600/20 active:scale-95 transition-all">
+                            Mulai Pendaftaran Akun <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                        <a href="#" onclick="showNotification('Informasi', 'Panduan Pendaftaran sukses diunduh.', 'success')" class="glass-card text-center text-slate-700 dark:text-slate-200 px-6 py-3.5 rounded-xl font-semibold border border-slate-300 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 transition flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-download"></i>
+                            <span>Unduh Buku Panduan</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 relative z-10">
+                    <div class="glass-panel p-6 sm:p-8 rounded-2xl shadow-xl border border-white/40 dark:border-white/5 text-center space-y-6">
+                        <div>
+                            <p class="text-xs uppercase tracking-widest font-bold text-slate-400">Batas Akhir Penutupan Registrasi</p>
+                            <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 mt-1">Countdown Penutupan Form</h3>
+                        </div>
+                        <div class="grid grid-cols-4 gap-2 md:gap-4">
+                            <div class="bg-white dark:bg-slate-800/80 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
+                                <span id="cd-days" class="text-2xl md:text-3xl font-extrabold text-blue-600 dark:text-blue-400 font-mono">25</span>
+                                <p class="text-[10px] text-slate-400 uppercase font-semibold mt-1">Hari</p>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800/80 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
+                                <span id="cd-hours" class="text-2xl md:text-3xl font-extrabold text-blue-600 dark:text-blue-400 font-mono">14</span>
+                                <p class="text-[10px] text-slate-400 uppercase font-semibold mt-1">Jam</p>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800/80 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
+                                <span id="cd-minutes" class="text-2xl md:text-3xl font-extrabold text-blue-600 dark:text-blue-400 font-mono">38</span>
+                                <p class="text-[10px] text-slate-400 uppercase font-semibold mt-1">Menit</p>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800/80 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
+                                <span id="cd-seconds" class="text-2xl md:text-3xl font-extrabold text-rose-500 font-mono">05</span>
+                                <p class="text-[10px] text-slate-400 uppercase font-semibold mt-1">Detik</p>
+                            </div>
+                        </div>
+                        <div class="pt-2 text-xs text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-700 flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-circle-info text-cyan-500"></i>
+                            <span>Sinkronisasi otomatis dengan server Kemenristek</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="glass-card p-6 rounded-2xl flex items-center justify-between">
+                    <div class="space-y-1">
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Pendaftar</p>
+                        <h4 class="text-3xl font-extrabold">342,190</h4>
+                        <span class="text-xs text-emerald-500 font-medium"><i class="fa-solid fa-arrow-trend-up"></i> +12% dari tahun lalu</span>
+                    </div>
+                    <div class="bg-blue-500/10 text-blue-600 dark:text-blue-400 p-4 rounded-xl text-2xl"><i class="fa-solid fa-users"></i></div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex items-center justify-between">
+                    <div class="space-y-1">
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">PTN Terintegrasi</p>
+                        <h4 class="text-3xl font-extrabold">124</h4>
+                        <span class="text-xs text-slate-400 font-medium">Universitas & Institut</span>
+                    </div>
+                    <div class="bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 p-4 rounded-xl text-2xl"><i class="fa-solid fa-building-columns"></i></div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex items-center justify-between">
+                    <div class="space-y-1">
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Kapasitas Kuota</p>
+                        <h4 class="text-3xl font-extrabold">85,600</h4>
+                        <span class="text-xs text-amber-500 font-medium"><i class="fa-solid fa-circle-exclamation"></i> Jalur Prestasi Khusus</span>
+                    </div>
+                    <div class="bg-amber-500/10 text-amber-600 dark:text-amber-400 p-4 rounded-xl text-2xl"><i class="fa-solid fa-chart-pie"></i></div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex items-center justify-between">
+                    <div class="space-y-1">
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Pertanyaan Terjawab</p>
+                        <h4 class="text-3xl font-extrabold">99.8%</h4>
+                        <span class="text-xs text-emerald-500 font-medium"><i class="fa-solid fa-bolt"></i> Helpdesk Layanan Responsif</span>
+                    </div>
+                    <div class="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 p-4 rounded-xl text-2xl"><i class="fa-solid fa-headset"></i></div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-4">
+                    <h3 class="text-xl font-bold flex items-center gap-2"><i class="fa-solid fa-bullhorn text-blue-500"></i> Pengumuman Terbaru</h3>
+                    <div class="space-y-3">
+                        <div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700/50 hover:border-blue-500 transition shadow-sm space-y-2">
+                            <div class="flex justify-between items-start">
+                                <span class="bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 text-[10px] font-bold px-2 py-0.5 rounded">PENTING</span>
+                                <span class="text-xs text-slate-400 font-mono">02 Juni 2026</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white">Penyesuaian Mekanisme Unggah Portofolio Seni & Olahraga</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">Bagi pendaftar rumpun ilmu seni dan olahraga, pastikan format video resolusi minimal HD (720p) menggunakan tautan server cloud yang tervalidasi publik...</p>
+                        </div>
+                        <div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700/50 hover:border-blue-500 transition shadow-sm space-y-2">
+                            <div class="flex justify-between items-start">
+                                <span class="bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded">INFORMASI</span>
+                                <span class="text-xs text-slate-400 font-mono">28 Mei 2026</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white">Peluncuran Sistem Verifikasi NISN Terintegrasi Dapodik</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">Sistem sinkronisasi berkas rapor otomatis dari database pusat Kementerian Pendidikan kini telah berjalan optimal untuk menyingkat proses manual siswa.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between space-y-4">
+                    <div class="space-y-2">
+                        <div class="w-10 h-10 bg-cyan-500/10 text-cyan-600 rounded-lg flex items-center justify-center text-lg font-bold"><i class="fa-solid fa-circle-question"></i></div>
+                        <h4 class="font-bold text-lg">Butuh Bantuan Kendala Teknis?</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            Pusat bantuan kami beroperasi selama 24 jam untuk melayani seluruh aduan terkait data sekolah yang tidak sinkron, permasalahan login akun, maupun gagal validasi berkas.
+                        </p>
+                    </div>
+                    <button onclick="navigateTo('contact')" class="w-full text-center bg-slate-900 dark:bg-slate-700 hover:bg-slate-800 text-white text-xs font-bold py-3 rounded-xl transition">
+                        Hubungi Layanan Helpdesk
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="section-requirements" class="page-section hidden max-w-4xl mx-auto px-4 py-8 space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-3xl font-extrabold">Persyaratan & Kriteria Kelayakan</h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400 max-w-lg mx-auto">Pastikan Anda memenuhi seluruh regulasi utama di bawah ini sebelum memproses pendaftaran online.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-card p-6 rounded-2xl space-y-4">
+                    <h3 class="font-bold text-lg text-blue-600 dark:text-blue-400 flex items-center gap-2"><i class="fa-solid fa-user-check"></i> Kriteria Siswa</h3>
+                    <ul class="space-y-2.5 text-xs text-slate-600 dark:text-slate-300">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i> <span>Siswa SMA/MA/SMK kelas terakhir (kelas 12) pada tahun 2026 dengan prestasi unggul.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i> <span>Memiliki NISN resmi yang terdaftar aktif pada sistem Pusdatin Kemendikbudristek.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i> <span>Memiliki nilai rapor semester 1 sampai dengan 5 yang telah diisikan di PDSS.</span></li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl space-y-4">
+                    <h3 class="font-bold text-lg text-cyan-600 dark:text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-file-shield"></i> Dokumen Wajib</h3>
+                    <ul class="space-y-2.5 text-xs text-slate-600 dark:text-slate-300">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-file-lines text-cyan-500 mt-0.5"></i> <span>Scan Kartu Tanda Penduduk (KTP) atau Kartu Keluarga (KK) berformat PDF/JPG.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-file-lines text-cyan-500 mt-0.5"></i> <span>Pasfoto resmi terbaru berlatar belakang merah/biru ukuran maks 300KB.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-file-lines text-cyan-500 mt-0.5"></i> <span>Sertifikat bukti pencapaian prestasi akademik/non-akademik tingkat nasional (opsional).</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="section-schedule" class="page-section hidden max-w-3xl mx-auto px-4 py-8 space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-3xl font-extrabold">Timeline Agenda Pelaksanaan</h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Ikuti rangkaian tanggal penting agar tidak tertinggal tahapan seleksi.</p>
+            </div>
+
+            <div class="relative border-l-2 border-blue-500/20 dark:border-blue-500/40 ml-4 space-y-8">
+                <div class="relative pl-6">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white dark:border-slate-900 shadow"></div>
+                    <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-950/40 px-2 py-0.5 rounded">SELESAI</span>
+                    <h4 class="font-bold text-base mt-1">Sosialisasi Pengisian PDSS</h4>
+                    <p class="text-xs text-slate-400">15 Januari – 08 Februari 2026</p>
+                </div>
+                <div class="relative pl-6">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-blue-600 border-4 border-white dark:border-slate-900 shadow"></div>
+                    <span class="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-950/40 px-2 py-0.5 rounded">SEDANG BERJALAN</span>
+                    <h4 class="font-bold text-base mt-1">Pendaftaran Resmi Jalur SMBP</h4>
+                    <p class="text-xs text-slate-400">14 Mei – 28 Juni 2026</p>
+                </div>
+                <div class="relative pl-6">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-700 border-4 border-white dark:border-slate-900 shadow"></div>
+                    <span class="text-xs font-mono font-bold text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">MENDATANG</span>
+                    <h4 class="font-bold text-base mt-1">Sidang Pleno Evaluasi Kelulusan</h4>
+                    <p class="text-xs text-slate-400">10 Juli – 22 Juli 2026</p>
+                </div>
+                <div class="relative pl-6">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-700 border-4 border-white dark:border-slate-900 shadow"></div>
+                    <span class="text-xs font-mono font-bold text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">MENDATANG</span>
+                    <h4 class="font-bold text-base mt-1">Pengumuman Resmi Hasil Kelulusan</h4>
+                    <p class="text-xs text-slate-400">05 Agustus 2026 (Pukul 15.00 WIB)</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="section-universities" class="page-section hidden max-w-6xl mx-auto px-4 py-8 space-y-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
+                <div>
+                    <h2 class="text-2xl font-extrabold tracking-tight">Daftar Perguruan Tinggi Negeri Terintegrasi</h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Cari informasi akreditasi, jurusan, daya tampung program studi PTN pilihan Anda.</p>
+                </div>
+                <div class="relative max-w-xs w-full">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="uni-search-input" onkeyup="filterUniversities()" placeholder="Cari PTN atau Program Studi..." class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-blue-500 transition">
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs md:text-sm border-collapse" id="uni-table">
+                        <thead>
+                            <tr class="bg-slate-50 dark:bg-slate-700/50 border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
+                                <th class="p-4">Kode</th>
+                                <th class="p-4">Nama Perguruan Tinggi</th>
+                                <th class="p-4">Program Studi Utama</th>
+                                <th class="p-4 text-center">Akreditasi</th>
+                                <th class="p-4 text-center">Kuota Tampung</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 dark:divide-slate-700/60 text-slate-700 dark:text-slate-200">
+                            <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-700/30 transition">
+                                <td class="p-4 font-mono text-blue-600 dark:text-blue-400 font-bold">311</td>
+                                <td class="p-4 font-bold">Universitas Indonesia (UI)</td>
+                                <td class="p-4">S1 Ilmu Komputer</td>
+                                <td class="p-4 text-center"><span class="bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 font-bold px-2 py-0.5 rounded">Unggul</span></td>
+                                <td class="p-4 text-center font-semibold">90 Kursi</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-700/30 transition">
+                                <td class="p-4 font-mono text-blue-600 dark:text-blue-400 font-bold">322</td>
+                                <td class="p-4 font-bold">Institut Teknologi Bandung (ITB)</td>
+                                <td class="p-4">S1 Teknik Informatika</td>
+                                <td class="p-4 text-center"><span class="bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 font-bold px-2 py-0.5 rounded">Unggul</span></td>
+                                <td class="p-4 text-center font-semibold">120 Kursi</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-700/30 transition">
+                                <td class="p-4 font-mono text-blue-600 dark:text-blue-400 font-bold">333</td>
+                                <td class="p-4 font-bold">Universitas Gadjah Mada (UGM)</td>
+                                <td class="p-4">S1 Teknologi Informasi</td>
+                                <td class="p-4 text-center"><span class="bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 font-bold px-2 py-0.5 rounded">Unggul</span></td>
+                                <td class="p-4 text-center font-semibold">85 Kursi</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-700/30 transition">
+                                <td class="p-4 font-mono text-blue-600 dark:text-blue-400 font-bold">351</td>
+                                <td class="p-4 font-bold">Universitas Airlangga (UNAIR)</td>
+                                <td class="p-4">S1 Kedokteran Umum</td>
+                                <td class="p-4 text-center"><span class="bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 font-bold px-2 py-0.5 rounded">A</span></td>
+                                <td class="p-4 text-center font-semibold">100 Kursi</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="section-registration" class="page-section hidden max-w-3xl mx-auto px-4 py-8 space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-3xl font-extrabold tracking-tight">Formulir Pendaftaran Online</h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Isi data akademis Anda secara bertahap melalui sistem asisten pendaftaran terintegrasi.</p>
+            </div>
+
+            <div class="flex items-center justify-between max-w-md mx-auto">
+                <div class="flex flex-col items-center space-y-1">
+                    <div id="step-badge-1" class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-md">1</div>
+                    <span class="text-[10px] font-bold text-slate-400">Biodata</span>
+                </div>
+                <div id="step-line-1" class="step-line flex-grow h-1 mx-2 rounded-full active"></div>
+                <div class="flex flex-col items-center space-y-1">
+                    <div id="step-badge-2" class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400 flex items-center justify-center font-bold text-sm">2</div>
+                    <span class="text-[10px] font-bold text-slate-400">Akademik</span>
+                </div>
+                <div id="step-line-2" class="step-line flex-grow h-1 mx-2 rounded-full"></div>
+                <div class="flex flex-col items-center space-y-1">
+                    <div id="step-badge-3" class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400 flex items-center justify-center font-bold text-sm">3</div>
+                    <span class="text-[10px] font-bold text-slate-400">Unggah</span>
+                </div>
+            </div>
+
+            <form id="reg-form" onsubmit="handleRegistrationSubmit(event)" class="glass-card p-6 md:p-8 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-6">
+                <div id="reg-step-1" class="form-step space-y-4">
+                    <h3 class="font-bold text-lg border-b pb-2 border-slate-100 dark:border-slate-700"><i class="fa-solid fa-address-card mr-2 text-blue-500"></i> Informasi Identitas Diri</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Nama Lengkap Siswa *</label>
+                            <input type="text" required placeholder="Sesuai dokumen Ijazah / KTP" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500 transition">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Nomor Induk Kependudukan (NIK) *</label>
+                            <input type="number" required placeholder="16 Digit Angka KTP" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500 transition">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="reg-step-2" class="form-step hidden space-y-4">
+                    <h3 class="font-bold text-lg border-b pb-2 border-slate-100 dark:border-slate-700"><i class="fa-solid fa-school mr-2 text-blue-500"></i> Riwayat Pendidikan Menengah</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Nama Sekolah Asal *</label>
+                            <input type="text" id="reg-school-name" placeholder="Contoh: SMAN 1 Jakarta" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500 transition">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Pilihan PTN & Program Studi Unggulan *</label>
+                            <select class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500 transition">
+                                <option>Universitas Indonesia - S1 Ilmu Komputer</option>
+                                <option>Institut Teknologi Bandung - S1 Teknik Informatika</option>
+                                <option>Universitas Gadjah Mada - S1 Teknologi Informasi</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="reg-step-3" class="form-step hidden space-y-4">
+                    <h3 class="font-bold text-lg border-b pb-2 border-slate-100 dark:border-slate-700"><i class="fa-solid fa-cloud-arrow-up mr-2 text-blue-500"></i> Unggah Dokumen Pendukung</h3>
+                    <div class="space-y-4">
+                        <div class="border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-xl p-6 text-center space-y-2 hover:border-blue-500 transition cursor-pointer">
+                            <i class="fa-solid fa-file-pdf text-3xl text-slate-400"></i>
+                            <p class="text-xs font-semibold text-slate-500 dark:text-slate-400">Pilih berkas Scan Transkrip Nilai Rapor (Format PDF Maks 2MB)</p>
+                            <input type="file" class="hidden" id="file-rapor">
+                            <button type="button" class="bg-slate-100 dark:bg-slate-700 px-3 py-1.5 text-[11px] font-bold rounded-lg mt-2">Cari Dokumen</button>
+                        </div>
+                        <div class="flex items-center gap-2 bg-blue-500/10 p-3 rounded-xl border border-blue-500/20">
+                            <input type="checkbox" id="agreement-check" required class="w-4 h-4 rounded text-blue-600 focus:ring-0">
+                            <label for="agreement-check" class="text-xs text-slate-600 dark:text-slate-300">Saya menyatakan demi hukum bahwa seluruh data berkas yang saya isikan adalah benar dan valid sesuai aslinya.</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100 dark:border-slate-700">
+                    <button type="button" id="wizard-prev-btn" onclick="moveWizardStep(-1)" class="opacity-0 pointer-events-none bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-xs px-5 py-2.5 rounded-xl transition flex items-center gap-1">
+                        <i class="fa-solid fa-chevron-left"></i> Kembali
+                    </button>
+                    <button type="button" id="wizard-next-btn" onclick="moveWizardStep(1)" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-6 py-2.5 rounded-xl transition flex items-center gap-1 shadow-md shadow-blue-500/10">
+                        Lanjut <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <button type="submit" id="wizard-submit-btn" class="hidden bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-6 py-2.5 rounded-xl transition flex items-center gap-1 shadow-md shadow-emerald-500/10">
+                        <i class="fa-solid fa-paper-plane"></i> Kirim Form Pendaftaran
+                    </button>
+                </div>
+            </form>
+        </section>
+
+
+        <section id="section-results" class="page-section hidden max-w-xl mx-auto px-4 py-8 space-y-6">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl font-extrabold">Cek Hasil Kelulusan Seleksi</h2>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Gunakan Nomor Pendaftaran Resmi dan NISN Siswa untuk melakukan validasi kelulusan akhir.</p>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-4 shadow-xl">
+                <div class="space-y-1">
+                    <label class="text-xs font-bold text-slate-400 uppercase tracking-wide">Nomor Peserta SMBP *</label>
+                    <input type="text" id="search-participant-num" placeholder="Contoh: 26-0311-002" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500 transition">
+                </div>
+                <div class="space-y-1">
+                    <label class="text-xs font-bold text-slate-400 uppercase tracking-wide">NISN Siswa *</label>
+                    <input type="number" id="search-nisn" placeholder="Contoh: 0074129845" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500 transition">
+                </div>
+                <button onclick="handleCheckResult()" class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold py-3 rounded-xl transition text-sm shadow-md shadow-blue-500/20 active:scale-95">
+                    <i class="fa-solid fa-magnifying-glass mr-1.5 text-xs"></i> Periksa Status Kelulusan
+                </button>
+            </div>
+
+            <div id="result-status-card" class="hidden glass-card p-6 rounded-2xl border transition-all text-center space-y-4">
+                </div>
+        </section>
+
+
+        <section id="section-faq" class="page-section hidden max-w-2xl mx-auto px-4 py-8 space-y-6">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl font-extrabold">Pertanyaan yang Sering Diajukan (FAQ)</h2>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Temukan solusi cepat dari kendala umum pengisian portal.</p>
+            </div>
+
+            <div class="space-y-3">
+                <div class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden bg-white dark:bg-slate-800">
+                    <button onclick="toggleAccordion(1)" class="w-full flex justify-between items-center p-4 text-left text-sm font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/40 transition">
+                        <span>Apakah bisa mengubah pilihan program studi setelah finalisasi berkas?</span>
+                        <i id="faq-icon-1" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-1" class="hidden p-4 pt-0 text-xs text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-700/60 leading-relaxed">
+                        Tidak bisa. Setelah Anda menekan tombol simpan permanen atau melakukan finalisasi berkas, seluruh data pilihan PTN dan Program Studi terkunci otomatis pada server pusat dan tidak dapat diubah kembali demi integritas data.
+                    </div>
+                </div>
+                <div class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden bg-white dark:bg-slate-800">
+                    <button onclick="toggleAccordion(2)" class="w-full flex justify-between items-center p-4 text-left text-sm font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/40 transition">
+                        <span>Berapa maksimal kuota sertifikat prestasi akademik yang diunggah?</span>
+                        <i id="faq-icon-2" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-2" class="hidden p-4 pt-0 text-xs text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-700/60 leading-relaxed">
+                        Setiap pendaftar diberikan batas kuota maksimal mengunggah 3 (tiga) piagam sertifikat kompetensi atau kejuaraan prestasi terbaik, baik tingkat Kabupaten/Kota, Provinsi, maupun Internasional.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="section-contact" class="page-section hidden max-w-5xl mx-auto px-4 py-8 space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl font-extrabold">Hubungi Kantor Pusat Layanan</h2>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Tim helpdesk teknis kami siap memberikan respon solutif dalam waktu cepat.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-5 space-y-4 bg-slate-900 text-slate-200 p-6 md:p-8 rounded-2xl shadow-xl">
+                    <h3 class="font-bold text-lg text-white">Informasi Kontak</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Gunakan kontak resmi di bawah ini untuk menghindari praktik penipuan atau pemerasan berkedok seleksi nasional.</p>
+                    
+                    <div class="space-y-4 pt-4 text-xs">
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-cyan-400 text-base w-5 text-center"></i> <span>Gedung D Ditjen Dikti, Kemendikbudristek, Jl. Jenderal Sudirman, Jakarta Pusat.</span></div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-envelope text-cyan-400 text-base w-5 text-center"></i> <span>helpdesk@smbp.kemdikbud.go.id</span></div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-phone text-cyan-400 text-base w-5 text-center"></i> <span>(021) 5794-6104</span></div>
+                    </div>
+
+                    <div class="pt-6 border-t border-slate-800 space-y-2">
+                        <p class="text-[10px] uppercase font-bold text-slate-500">Kanal Media Sosial Resmi</p>
+                        <div class="flex gap-2">
+                            <a href="#" class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-cyan-500 hover:text-white transition text-sm"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-cyan-500 hover:text-white transition text-sm"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-cyan-500 hover:text-white transition text-sm"><i class="fa-brands fa-x-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 glass-card p-6 md:p-8 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold text-slate-400 uppercase">Alamat Email Pengirim *</label>
+                            <input type="email" required placeholder="Contoh: rudi.jaya@gmail.com" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-blue-500 transition">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold text-slate-400 uppercase">Subjek Pengaduan Masalah *</label>
+                            <input type="text" required placeholder="Contoh: Sinkronisasi NISN Terkendala" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-blue-500 transition">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold text-slate-400 uppercase">Isi Pesan Secara Rinci *</label>
+                            <textarea required rows="4" placeholder="Tulis rincian kendala sistem yang dihadapi..." class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-blue-500 transition"></textarea>
+                        </div>
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-6 py-3 rounded-xl transition shadow-md shadow-blue-500/10">
+                            Kirim Pesan Pengaduan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="section-login" class="page-section hidden max-w-md mx-auto px-4 py-8 space-y-6">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl font-extrabold">Akses Masuk Sistem Utama</h2>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Silakan masukkan kredensial akun yang terdaftar untuk melanjutkan pengisian data.</p>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-2xl space-y-4">
+                <div class="grid grid-cols-2 p-1 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs font-bold mb-4">
+                    <button id="tab-login-siswa" onclick="switchLoginTab('siswa')" class="py-2 rounded-lg bg-white dark:bg-slate-700 shadow text-blue-600 dark:text-blue-400 text-center">Siswa Pendaftar</button>
+                    <button id="tab-login-admin" onclick="switchLoginTab('admin')" class="py-2 rounded-lg text-slate-500 dark:text-slate-400 text-center hover:text-slate-800 transition">Petugas PTN/Admin</button>
+                </div>
+
+                <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
+                    <div class="space-y-1">
+                        <label id="login-id-label" class="text-xs font-bold text-slate-400 uppercase">Nomor NISN Siswa *</label>
+                        <input type="text" required id="login-identity-input" placeholder="Masukkan 10 digit NISN Anda" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-blue-500 transition">
+                    </div>
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-center">
+                            <label class="text-xs font-bold text-slate-400 uppercase">Kata Sandi Rahasia *</label>
+                            <a href="#" onclick="showNotification('Informasi', 'Tautan pemulihan kata sandi telah dikirim ke email terdaftar.', 'success')" class="text-[11px] text-blue-500 font-semibold hover:underline">Lupa Password?</a>
+                        </div>
+                        <input type="password" required placeholder="••••••••" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-blue-500 transition">
+                    </div>
+
+                    <div class="flex items-center gap-2 pt-1">
+                        <input type="checkbox" id="login-remember" class="w-4 h-4 rounded text-blue-600 focus:ring-0">
+                        <label for="login-remember" class="text-xs text-slate-500 dark:text-slate-400">Ingat Akun Saya di Perangkat Ini</label>
+                    </div>
+
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition text-xs shadow-md shadow-blue-500/10 active:scale-95">
+                        Autentikasi & Masuk Akun
+                    </button>
+                </form>
+            </div>
+        </section>
+
+
+        <section id="section-admin" class="page-section hidden max-w-7xl mx-auto px-4 py-8 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-900 text-white p-6 rounded-2xl shadow-xl">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center text-xl border border-rose-500/30"><i class="fa-solid fa-user-shield"></i></div>
+                    <div>
+                        <h2 class="text-xl font-extrabold tracking-tight">Pusat Manajemen Admin Pusat</h2>
+                        <p class="text-xs text-slate-400">Selamat datang kembali, Petugas Administrator <span class="text-cyan-400 font-bold">Rudi Jaya</span></p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="showNotification('Ekspor Data', 'Seluruh database pendaftar (.xlsx) sukses diekspor.', 'success')" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold px-4 py-2 rounded-xl transition flex items-center gap-1.5"><i class="fa-solid fa-file-excel text-emerald-500"></i> Ekspor CSV</button>
+                    <button onclick="navigateTo('home')" class="bg-rose-600 hover:bg-rose-700 text-xs font-bold px-4 py-2 rounded-xl transition flex items-center gap-1.5"><i class="fa-solid fa-right-from-bracket"></i> Keluar</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="glass-card p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                    <div><p class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Berkas Belum Diverifikasi</p><h5 class="text-2xl font-extrabold mt-0.5 text-amber-500">14,205</h5></div>
+                    <div class="w-10 h-10 bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-lg flex items-center justify-center text-lg"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                </div>
+                <div class="glass-card p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                    <div><p class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Berkas Disetujui/Lolos</p><h5 class="text-2xl font-extrabold mt-0.5 text-emerald-500">298,400</h5></div>
+                    <div class="w-10 h-10 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-lg flex items-center justify-center text-lg"><i class="fa-solid fa-circle-check"></i></div>
+                </div>
+                <div class="glass-card p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                    <div><p class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Berkas Ditolak/Gugur</p><h5 class="text-2xl font-extrabold mt-0.5 text-rose-500">29,585</h5></div>
+                    <div class="w-10 h-10 bg-rose-500/10 text-rose-600 dark:text-rose-400 rounded-lg flex items-center justify-center text-lg"><i class="fa-solid fa-circle-xmark"></i></div>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm space-y-4 p-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <h3 class="font-bold text-sm text-slate-800 dark:text-slate-200">Manajemen Pemantauan Berkas Siswa Masuk</h3>
+                    <div class="text-xs text-slate-400">Total data dimuat: 4 Siswa Aktif</div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 dark:bg-slate-700/50 border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">
+                                <th class="p-3">Nama Pendaftar</th>
+                                <th class="p-3">NISN</th>
+                                <th class="p-3">Sekolah Asal</th>
+                                <th class="p-3">Pilihan Program Studi</th>
+                                <th class="p-3">Status Berkas</th>
+                                <th class="p-3 text-center">Aksi Operasional</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 dark:divide-slate-700/60 text-slate-700 dark:text-slate-200">
+                            <tr>
+                                <td class="p-3 font-bold">Rudi Jaya Saputra</td>
+                                <td class="p-3 font-mono">0075128945</td>
+                                <td class="p-3">SMAN 1 Palembang</td>
+                                <td class="p-3">UI - S1 Ilmu Komputer</td>
+                                <td class="p-3"><span class="bg-amber-100 text-amber-800 dark:bg-amber-950/40 dark:text-amber-400 font-bold px-2 py-0.5 rounded">Pending Verifikasi</span></td>
+                                <td class="p-3 text-center space-x-1">
+                                    <button onclick="showNotification('Aksi Sukses', 'Berkas pendaftar disetujui.', 'success')" class="bg-emerald-500 hover:bg-emerald-600 text-white px-2 py-1 rounded text-[10px] font-bold transition">Approve</button>
+                                    <button onclick="showNotification('Aksi Sukses', 'Berkas pendaftar ditolak.', 'error')" class="bg-rose-500 hover:bg-rose-600 text-white px-2 py-1 rounded text-[10px] font-bold transition">Reject</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold">Siti Aisyah Rahma</td>
+                                <td class="p-3 font-mono">0069412587</td>
+                                <td class="p-3">SMAN 3 Bandung</td>
+                                <td class="p-3">ITB - S1 Teknik Informatika</td>
+                                <td class="p-3"><span class="bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-400 font-bold px-2 py-0.5 rounded">Lolos Berkas</span></td>
+                                <td class="p-3 text-center space-x-1">
+                                    <button onclick="showNotification('Informasi', 'Data pelamar sudah berada pada status final.', 'warning')" class="bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-3 py-1 rounded text-[10px] font-bold cursor-not-allowed">Sudah Diproses</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <footer class="glass-panel border-t border-slate-200 dark:border-slate-800/80 mt-12 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+            <div class="space-y-1">
+                <span class="font-bold text-sm tracking-wide text-slate-800 dark:text-slate-200">Portal Utama Pusat Informasi Resmi SMBP 2026</span>
+                <p class="text-xs text-slate-400">Hak Cipta Terpelihara &copy; 2026 SMBP. All Rights Reserved. Dikembangkan oleh Tim Pengembang Utama.</p>
+            </div>
+            <div class="text-xs font-semibold text-slate-400 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> SSL Secured 256-bit Connection Encrypted
+            </div>
+        </div>
+    </footer>
+
+
+    <button id="back-to-top-btn" onclick="scrollToTop()" class="hidden fixed bottom-6 right-6 z-40 bg-gradient-to-r from-blue-600 to-cyan-500 text-white w-10 h-10 rounded-full shadow-lg items-center justify-center hover:scale-110 active:scale-95 transition-all cursor-pointer" title="Kembali ke Atas">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+
+    <script>
+        // Global Multi-step Wizard state controller variables
+        let currentWizardStep = 1;
+        const totalWizardSteps = 3;
+
+        // On document window initial structural loading completion event hook
+        window.addEventListener('DOMContentLoaded', () => {
+            runSplashScreenSimulation();
+            initClockTicker();
+            initCountdownTimer();
+            
+            // Listen window scrolling event to control visibility of back-to-top component layout element button hook toggle
+            window.addEventListener('scroll', () => {
+                const bttBtn = document.getElementById('back-to-top-btn');
+                if (window.scrollY > 400) {
+                    bttBtn.style.display = 'flex';
+                } else {
+                    bttBtn.style.display = 'none';
+                }
+            });
+        });
+
+        // 1. Splash Screen Animated Progress Loading Engine Simulation Task
+        function runSplashScreenSimulation() {
+            const bar = document.getElementById('loading-bar');
+            const percent = document.getElementById('loading-percentage');
+            const text = document.getElementById('loading-text');
+            const splash = document.getElementById('splash-screen');
+            
+            let loadProgress = 0;
+            const phrases = [
+                "Menginisialisasi Portal SMBP...",
+                "Menghubungkan Server Kemendikbud...",
+                "Memuat Enkripsi Keamanan Berkas...",
+                "Sinkronisasi Database Universitas...",
+                "Sistem Siap Dioperasikan Lulus!"
+            ];
+
+            const interval = setInterval(() => {
+                loadProgress += Math.floor(Math.random() * 12) + 4;
+                if (loadProgress >= 100) {
+                    loadProgress = 100;
+                    clearInterval(interval);
+                    
+                    // Finalize display out
+                    percent.innerText = `100%`;
+                    bar.style.width = `100%`;
+                    
+                    setTimeout(() => {
+                        splash.classList.add('opacity-0', 'pointer-events-none', 'scale-105');
+                        showNotification('Selamat Datang!', 'Portal Resmi SMBP 2026 sukses dimuat penuh.', 'success');
+                    }, 400);
+                } else {
+                    percent.innerText = `${loadProgress}%`;
+                    bar.style.width = `${loadProgress}%`;
+                    
+                    // Rotate placeholder strings text lines beautifully
+                    if (loadProgress > 25 && loadProgress < 50) text.innerText = phrases[1];
+                    if (loadProgress > 50 && loadProgress < 75) text.innerText = phrases[2];
+                    if (loadProgress > 75) text.innerText = phrases[3];
+                }
+            }, 150);
+        }
+
+        // 2. Realtime Ticking Clock Functional Engine Core Component
+        function initClockTicker() {
+            const clockEl = document.getElementById('live-clock');
+            setInterval(() => {
+                const now = new Date();
+                clockEl.innerText = now.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            }, 1000);
+        }
+
+        // 3. Countdown Functional Expiry Timer Widget Implementation Engine core
+        function initCountdownTimer() {
+            // Target closing date configuration preset: June 28, 2026 23:59:59
+            const targetDate = new Date("June 28, 2026 23:59:59").getTime();
+
+            setInterval(() => {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance < 0) return; // Expired state
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
+                document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('cd-minutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('cd-seconds').innerText = String(seconds).padStart(2, '0');
+            }, 1000);
+        }
+
+        // 4. Single-Page Reactive Views Section Router Controller Navigation Navigation Function
+        function navigateTo(sectionId) {
+            // Hide all structural blocks visibility panels layout sections automatically
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.add('hidden'));
+
+            // Target search matching element view container removal
+            const targetSection = document.getElementById(`section-${sectionId}`);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Close mobile collapsible menu bar layer frame if active
+            document.getElementById('mobile-menu').classList.add('hidden');
+
+            // Sync structural Desktop state visual indicator styles buttons tracking paths active links
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(ln => {
+                ln.className = "nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-blue-400 transition";
+            });
+        }
+
+        // 5. Mobile Toggle Action Trigger Menu Button Expand View Open Layer
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.className = "fa-solid fa-xmark text-xl";
+            } else {
+                menu.classList.add('hidden');
+                icon.className = "fa-solid fa-bars text-xl";
+            }
+        }
+
+        // 6. Dynamic Theme Mode Toggle Switch Implementation System Engine
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const iconDesktop = document.getElementById('theme-icon');
+            const iconMobile = document.getElementById('theme-icon-mobile');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                iconDesktop.className = "fa-solid fa-moon";
+                iconMobile.className = "fa-solid fa-moon";
+                showNotification('Tema Diubah', 'Tampilan beralih ke Mode Terang (Light Mode).', 'info');
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                iconDesktop.className = "fa-solid fa-sun text-amber-400";
+                iconMobile.className = "fa-solid fa-sun text-amber-400";
+                showNotification('Tema Diubah', 'Tampilan beralih ke Mode Gelap (Dark Mode).', 'info');
+            }
+        }
+
+        // 7. Global Custom Toast Notification Engine Toast Message Broadcaster System Component
+        function showNotification(title, message, type = 'info') {
+            const container = document.getElementById('notification-container');
+            
+            // Build dynamic unique element frame box design configurations map based styling parameters choice
+            let bgClass = "bg-white dark:bg-slate-800 border-l-4 border-blue-500 shadow-2xl text-slate-800 dark:text-white";
+            let iconHtml = `<i class="fa-solid fa-circle-info text-blue-500 text-base"></i>`;
+
+            if (type === 'success') {
+                bgClass = "bg-white dark:bg-slate-800 border-l-4 border-emerald-500 shadow-2xl text-slate-800 dark:text-white";
+                iconHtml = `<i class="fa-solid fa-circle-check text-emerald-500 text-base"></i>`;
+            } else if (type === 'warning') {
+                bgClass = "bg-white dark:bg-slate-800 border-l-4 border-amber-500 shadow-2xl text-slate-800 dark:text-white";
+                iconHtml = `<i class="fa-solid fa-triangle-exclamation text-amber-500 text-base"></i>`;
+            } else if (type === 'error') {
+                bgClass = "bg-white dark:bg-slate-800 border-l-4 border-rose-500 shadow-2xl text-slate-800 dark:text-white";
+                iconHtml = `<i class="fa-solid fa-circle-xmark text-rose-500 text-base"></i>`;
+            }
+
+            const toast = document.createElement('div');
+            toast.className = `p-4 rounded-xl flex items-start space-x-3 pointer-events-auto border border-slate-100 dark:border-slate-700/50 transition-all duration-300 transform translate-x-12 opacity-0 ${bgClass}`;
+            toast.innerHTML = `
+                <div class="pt-0.5">${iconHtml}</div>
+                <div class="flex-grow space-y-0.5">
+                    <h5 class="font-bold text-xs md:text-sm">${title}</h5>
+                    <p class="text-[11px] md:text-xs text-slate-500 dark:text-slate-400 leading-tight">${message}</p>
+                </div>
+            `;
+
+            container.appendChild(toast);
+
+            // Trigger animation frame layout entrance flow step
+            setTimeout(() => {
+                toast.classList.remove('translate-x-12', 'opacity-0');
+            }, 50);
+
+            // Auto purge collection array listing block tracking instance garbage destruction stack step
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        // 8. Expandable Interactive FAQ Accordion Action Handler Engine Controller function
+        function toggleAccordion(index) {
+            const ans = document.getElementById(`faq-ans-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            if (ans.classList.contains('hidden')) {
+                ans.classList.remove('hidden');
+                icon.style.transform = "rotate(180deg)";
+            } else {
+                ans.classList.add('hidden');
+                icon.style.transform = "rotate(0deg)";
+            }
+        }
+
+        // 9. Interactive Live Filter Realtime Search for Universities Data Grid List Component
+        function filterUniversities() {
+            const input = document.getElementById('uni-search-input').value.toLowerCase();
+            const table = document.getElementById('uni-table');
+            const tr = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < tr.length; i++) {
+                const tdName = tr[i].getElementsByTagName('td')[1];
+                const tdProdi = tr[i].getElementsByTagName('td')[2];
+                if (tdName || tdProdi) {
+                    const txtName = tdName.textContent || tdName.innerText;
+                    const txtProdi = tdProdi.textContent || tdProdi.innerText;
+                    if (txtName.toLowerCase().indexOf(input) > -1 || txtProdi.toLowerCase().indexOf(input) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        // 10. Login Tab Toggle Switching Handler Logic System Engine Controller view
+        function switchLoginTab(mode) {
+            const btnSiswa = document.getElementById('tab-login-siswa');
+            const btnAdmin = document.getElementById('tab-login-admin');
+            const labelIdentity = document.getElementById('login-id-label');
+            const inputIdentity = document.getElementById('login-identity-input');
+
+            if (mode === 'siswa') {
+                btnSiswa.className = "py-2 rounded-lg bg-white dark:bg-slate-700 shadow text-blue-600 dark:text-blue-400 text-center";
+                btnAdmin.className = "py-2 rounded-lg text-slate-500 dark:text-slate-400 text-center hover:text-slate-800 transition";
+                labelIdentity.innerText = "Nomor NISN Siswa *";
+                inputIdentity.placeholder = "Masukkan 10 digit NISN Anda";
+            } else {
+                btnAdmin.className = "py-2 rounded-lg bg-white dark:bg-slate-700 shadow text-blue-600 dark:text-blue-400 text-center";
+                btnSiswa.className = "py-2 rounded-lg text-slate-500 dark:text-slate-400 text-center hover:text-slate-800 transition";
+                labelIdentity.innerText = "NIP / Kode Petugas Admin *";
+                inputIdentity.placeholder = "Contoh: ADM-2026-X7";
+            }
+        }
+
+        // 11. Authentication Submission Processing Action Form Hook Mock Logic Verification Router
+        function handleLoginSubmit(e) {
+            e.preventDefault();
+            const identity = document.getElementById('login-identity-input').value;
+            
+            if (identity.includes('ADM') || identity.includes('adm')) {
+                showNotification('Autentikasi Sukses', 'Sistem mengarahkan Anda ke Dashboard Manajemen Admin Pusat.', 'success');
+                setTimeout(() => navigateTo('admin'), 800);
+            } else {
+                showNotification('Autentikasi Siswa Sukses', 'Berhasil masuk ke area portal akademik pengisian formulir data.', 'success');
+                setTimeout(() => navigateTo('registration'), 800);
+            }
+        }
+
+        // 12. Multi-Step Form Wizard Execution Forward-Backward Movement Step Routing Layout Manager Engine
+        function moveWizardStep(direction) {
+            // Validate step context integrity state before progressing further forward steps validation hooks
+            if (direction === 1 && currentWizardStep === 1) {
+                const schoolName = document.getElementById('reg-school-name');
+                // Auto inject mock school focus validation checking for demo compliance purposes
+            }
+
+            // Update calculation values steps index bounding clamp checks
+            const nextStep = currentWizardStep + direction;
+            if (nextStep < 1 || nextStep > totalWizardSteps) return;
+
+            // Hide old step container panel view layer
+            document.getElementById(`reg-step-${currentWizardStep}`).classList.add('hidden');
+            
+            // Adjust update global tracker property pointer
+            currentWizardStep = nextStep;
+            
+            // Unhide targeting active dynamic screen block element wizard panel frame view
+            document.getElementById(`reg-step-${currentWizardStep}`).classList.remove('hidden');
+
+            // Sync visual representation badges and bars line connector styles markers mapping indexes
+            for (let i = 1; i <= totalWizardSteps; i++) {
+                const badge = document.getElementById(`step-badge-${i}`);
+                if (i <= currentWizardStep) {
+                    badge.className = "w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-md";
+                } else {
+                    badge.className = "w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400 flex items-center justify-center font-bold text-sm";
+                }
+
+                // Manage line connections layout parameters
+                if (i < totalWizardSteps) {
+                    const line = document.getElementById(`step-line-${i}`);
+                    if (i < currentWizardStep) {
+                        line.classList.add('bg-blue-600');
+                        line.classList.remove('bg-slate-200', 'dark:bg-slate-700');
+                    } else {
+                        line.classList.remove('bg-blue-600');
+                        line.classList.add('bg-slate-200', 'dark:bg-slate-700');
+                    }
+                }
+            }
+
+            // Manage visible action buttons footprint layout state mapping
+            const prevBtn = document.getElementById('wizard-prev-btn');
+            const nextBtn = document.getElementById('wizard-next-btn');
+            const submitBtn = document.getElementById('wizard-submit-btn');
+
+            if (currentWizardStep === 1) {
+                prevBtn.classList.add('opacity-0', 'pointer-events-none');
+            } else {
+                prevBtn.classList.remove('opacity-0', 'pointer-events-none');
+            }
+
+            if (currentWizardStep === totalWizardSteps) {
+                nextBtn.classList.add('hidden');
+                submitBtn.classList.remove('hidden');
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+        }
+
+        // 13. Complex Registration Wizard Submission Data Final Action Handler Mock Integration 
+        function handleRegistrationSubmit(e) {
+            e.preventDefault();
+            showNotification('Mengirim Formulir...', 'Sedang mengenkripsi data berkas pendaftaran Anda ke blockchain database server.', 'warning');
+            
+            setTimeout(() => {
+                showNotification('Pendaftaran Sukses!', 'Formulir Anda resmi tersimpan permanen. Silakan unduh bukti tanda pendaftaran digital.', 'success');
+                // Redirect user path clean step sequence context back to home screen block structure view dashboard
+                setTimeout(() => navigateTo('home'), 1200);
+            }, 2000);
+        }
+
+        // 14. Live Mock Evaluation Verification Engine for Checking Admissions Status Score Card view
+        function handleCheckResult() {
+            const partNum = document.getElementById('search-participant-num').value.trim();
+            const nisn = document.getElementById('search-nisn').value.trim();
+            const cardResult = document.getElementById('result-status-card');
+
+            if (!partNum || !nisn) {
+                showNotification('Validasi Gagal', 'Harap isi seluruh kolom form pencarian hasil secara lengkap.', 'error');
+                return;
+            }
+
+            cardResult.classList.remove('hidden');
+            cardResult.innerHTML = `
+                <div class="flex items-center justify-center py-4">
+                    <i class="fa-solid fa-circle-notch animate-spin text-2xl text-blue-500"></i>
+                </div>
+                <p class="text-xs text-slate-400">Mencari records database integrasi nasional...</p>
+            `;
+
+            // Timeout asynchronous structural search processing simulator loop execution
+            setTimeout(() => {
+                // If number matches specific sample input patterns route pass response mock layout design
+                if (partNum.includes('311') || partNum.includes('26')) {
+                    cardResult.className = "glass-card p-6 rounded-2xl border border-emerald-500/30 text-center space-y-4 bg-emerald-500/5";
+                    cardResult.innerHTML = `
+                        <div class="w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xl mx-auto shadow-md shadow-emerald-500/20"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div>
+                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-3 py-1 rounded-full uppercase tracking-wider">Selamat! Anda Dinyatakan Lulus</span>
+                            <h4 class="font-bold text-lg text-slate-900 dark:text-white mt-2">Rudi Jaya Saputra</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">NISN: ${nisn} | No: ${partNum}</p>
+                        </div>
+                        <div class="p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 text-left text-xs space-y-1 max-w-xs mx-auto">
+                            <div class="flex justify-between"><span class="text-slate-400">PTN Penerima:</span> <span class="font-bold">Universitas Indonesia</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Program Studi:</span> <span class="font-bold text-blue-500">S1 Ilmu Komputer</span></div>
+                        </div>
+                        <button onclick="showNotification('Unduhan Dimulai', 'Slip bukti kelulusan digital resmi sedang diunduh.', 'success')" class="bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow-md w-full max-w-xs mx-auto flex items-center justify-center gap-1.5"><i class="fa-solid fa-file-arrow-down"></i> Unduh Slip Bukti Kelulusan PTN</button>
+                    `;
+                } else {
+                    cardResult.className = "glass-card p-6 rounded-2xl border border-rose-500/30 text-center space-y-4 bg-rose-500/5";
+                    cardResult.innerHTML = `
+                        <div class="w-12 h-12 rounded-full bg-rose-500 text-white flex items-center justify-center text-xl mx-auto shadow-md shadow-rose-500/20"><i class="fa-solid fa-heart-crack"></i></div>
+                        <div>
+                            <span class="text-[10px] bg-rose-100 text-rose-800 font-bold px-3 py-1 rounded-full uppercase tracking-wider">Mohon Maaf, Belum Lulus</span>
+                            <h4 class="font-bold text-lg text-slate-900 dark:text-white mt-2">Peserta Uji Seleksi</h4>
+                            <p class="text-xs text-slate-400">Jangan berkecil hati. Kesempatan emas Anda masih terbuka lebar melalui jalur UTBK Mandiri PTN Utama mendatang!</p>
+                        </div>
+                    `;
+                }
+            }, 1200);
+        }
+
+        // 15. Simple Contact Input Mock Submission Broadcaster notification function
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showNotification('Pesan Terkirim!', 'Terima kasih, laporan aduan kendala Anda telah diteruskan ke helpdesk penanggung jawab.', 'success');
+            e.target.reset();
+        }
+
+        // 16. Utility Scroll To Top Smooth Animation Framework function
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
